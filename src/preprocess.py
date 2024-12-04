@@ -3,14 +3,14 @@ import os
 
 def preprocess(input, output):
     data = pd.read_csv(input)
-    print("Columns before dropping:", data.columns.tolist())  # Debugging
+    print("Columns before dropping:", data.columns.tolist())  
 
     if 'Id' in data.columns:
-        data = data.drop(columns=['Id'])
+        data = data.drop(columns=['Id', 'free sulfur dioxide','residual sugar'])
     else:
         print("'Id' column not found. No columns were dropped.")
 
-    print("Columns after dropping:", data.columns.tolist())  # Debugging
+    print("Columns after dropping:", data.columns.tolist())  
 
     os.makedirs(os.path.dirname(output), exist_ok=True)
     data.to_csv(output, header=True, index=False)
